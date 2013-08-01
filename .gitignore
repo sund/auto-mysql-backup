@@ -2,4 +2,4 @@
 .DS_Store
 
 # config file
-automysqlbackup.conf.txt
+automysqlbackup.conf
