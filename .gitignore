@@ -1,5 +1,6 @@
 # mac crap
 .DS_Store
 
-# config file
+# config files
 automysqlbackup.conf
+runmysqlbackup.conf
