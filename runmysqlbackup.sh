@@ -107,6 +107,7 @@ rsyncDaemon() {
 printScriptver() {
 	# print the most recent tag
 	echo "This is $0"
+	cd $PDIR
 	echo "Version $(git describe --abbrev=0 --tags), commit #$(git log --pretty=format:'%h' -n 1)."
 }
 
