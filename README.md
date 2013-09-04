@@ -1,6 +1,7 @@
 ## auto-mysql-backup
 
-Using _http://sourceforge.net/projects/automysqlbackup/_ with a wrapper that I use the main benefit is to rsync the backups to another server.
+Using _http://sourceforge.net/projects/automysqlbackup/_ with a wrapper that I
+use with the main benefit is to rsync the backups to another server.
 
 ---
 
