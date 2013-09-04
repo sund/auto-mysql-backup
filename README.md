@@ -1,21 +1,29 @@
 ## auto-mysql-backup
 
-*My custom version*
+Using _http://sourceforge.net/projects/automysqlbackup/_ with a wrapper that I use the main benefit is to rsync the backups to another server.
 
 ---
 
-in automysqlbackup script, there is:
+#### Usage
 
-```
-CONFIG_configfile="/etc/automysqlbackup/automysqlbackup.conf"
-```
+Clone with ```git clone git@github.com:sund/auto-mysql-backup.git``` in ```/usr/local/sbin```.
 
-that can be changed if needed. I managed to just pass in the conf file on the command line
+Use ```runmysqlbackup.sh``` as a wrapper to run the script.
+
+#### edit the automysqlbackup config file
+
+```cp automysqlbackup-sample.conf automysqlbackup.conf``` and edit as needed.
+
+#### edit the runmysqlbackup.conf file
+
+```cp runmysqlbackup-sample.conf runmysqlbackup.conf``` and enter your server info to rsync to.
+
+#### Crontab entry
 
 ```bash
-5 3 * * * /usr/local/sbin/auto-mysql-backup/automysqlbackup /usr/local/sbin/auto-mysql-backup/automysqlbackup.conf
+5 3 * * * /usr/local/sbin/auto-mysql-backup/runmysqlbackup.sh
 ```
 
-#### Future
+#### et cetera
 
-Use ```runmysqlbackup.sh``` as a wrapper to run the script, picking up the paths we start from, etc.
+the folder ```_sf_distro``` has some extra files from the SourceForge download to keep things neat.
