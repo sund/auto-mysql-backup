@@ -27,3 +27,5 @@ Use ```runmysqlbackup.sh``` as a wrapper to run the script.
 #### et cetera
 
 the folder ```_sf_distro``` has some extra files from the SourceForge download to keep things neat.
+
+This uses version v3.0_rc6 of automysqlbackup
