@@ -1,13 +1,13 @@
 ## auto-mysql-backup
 
 Using _http://sourceforge.net/projects/automysqlbackup/_ with a wrapper that I
-use with the main benefit is to rsync the backups to another server.
+use. The main benefit is being able to rsync the backups to another server.
 
 ---
 
 #### Usage
 
-Clone with ```git clone git@github.com:sund/auto-mysql-backup.git``` in ```/usr/local/sbin```.
+Clone with ```git clone https://github.com/sund/auto-mysql-backup.git``` in ```/usr/local/sbin```.
 
 Use ```runmysqlbackup.sh``` as a wrapper to run the script.
 
