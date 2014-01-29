@@ -101,6 +101,30 @@ rsyncDaemon() {
     rsync -Cavz --port=$remotePort --password-file=$rsync_password_file --delete-after /$localBackupDir/ $remoteUser@$remoteServer::$remoteModule
 }
 
+sshQuotaKey() {
+#quota check: with a key remoteServer, run the quota command
+	if [[ $checkQuota == "true" || $checkQuota = 1 ]]
+	then
+	    echo =============================================================
+	    echo -e "Quota check: \n$remoteUser@$remoteServer:$remoteModule\nwith key\n"
+		ssh -p $remotePort -i $sshKeyPath $remoteUser@$remoteServer "quota"
+	    echo =============================================================
+
+	fi
+}
+
+sshQuota() {
+#quota check: assuming we can ssh into remoteServer, run the quota command
+	if [[ $checkQuota == "true" || $checkQuota = 1 ]]
+	then
+	    echo =============================================================
+	    echo -e "Quota check: \n$remoteUser@$remoteServer:$remoteModule\n"
+		ssh -p $remotePort $remoteUser@$remoteServer "quota"
+	    echo =============================================================
+
+	fi
+}
+
 printScriptver() {
 	# print the most recent tag
 	echo "This is $0"
@@ -138,16 +162,18 @@ then
 	if [[ $remoteModule != "" ]]
 	then
 		rsyncDaemon
-	
+	    
 	# no Daemon so lets see if we are using a special key
 	else if [ -e $sshKeyPath -a -r $sshKeyPath ] && [[ $sshKeyPath != "" ]]
 		then
 		
 			rsyncKey
+			sshQuotaKey
 		else if [[ $remoteServer != "" ]]
 		then
 			# use the defualt 
 			rsyncUp
+			sshQuota
 			fi
 		fi
 	fi
