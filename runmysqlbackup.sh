@@ -83,24 +83,21 @@ find /var/backup/db* -type d -exec chmod 700 {} \;
 rsyncUp() {
 # rsync up with default key
     echo =============================================================
-    echo Start rsync to rsync.net/backup no key
-    echo =============================================================
+    echo -e "Start rsync to rsync.net/backup no key\n"
     rsync -Cavz --delete-after -e "ssh -p$remotePort" $localBackupDir/ $remoteUser@$remoteServer:$remoteDest
 }
 
 rsyncKey() {
 # rsync up with specific key
     echo =============================================================
-    echo Start rsync to rsync.net/backup with specific key
-    echo =============================================================
+    echo -e "Start rsync to rsync.net/backup with specific key\n"
     rsync -Cavz --delete-after -e "ssh -i $sshKeyPath -p$remotePort" $localBackupDir/ $remoteUser@$remoteServer:$remoteDest
 }
 
 rsyncDaemon() {
 # rsync up with specific key
     echo =============================================================
-    echo Start rsync to rsync.net/backup in daemon mode
-    echo =============================================================
+    echo -e "Start rsync to rsync.net/backup in daemon mode\n"
     rsync -Cavz --port=$remotePort --password-file=$rsync_password_file --delete-after /$localBackupDir/ $remoteUser@$remoteServer::$remoteModule
 }
 
