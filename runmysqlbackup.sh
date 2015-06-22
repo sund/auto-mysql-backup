@@ -52,18 +52,23 @@ findAutoMyB() {
 }
 
 findConfAMB() {
-	if [ -e $PDIR/automysqlbackup.conf -a -r $PDIR/automysqlbackup.conf ]
-	then
-		confPath="$PDIR/automysqlbackup.conf"
-	else
-		if [ -e /etc/automysqlbackup/automysqlbackup.conf -a -r /etc/automysqlbackup/automysqlbackup.conf ]
-		then
-			confPath="/etc/automysqlbackupautomysqlbackup.conf"
-		else
-			echo "Couldn't find the automysqlbackup config."
-			exit 1
-		fi
-	fi
+        if [ -e $PDIR/automysqlbackup.conf -a -r $PDIR/automysqlbackup.conf ]
+        then
+                confPath="$PDIR/automysqlbackup.conf"
+        else
+                if [ -e /etc/automysqlbackup/myserver.conf -a -r /etc/automysqlbackup/myserver.conf ]
+                then
+                        confPath="/etc/automysqlbackup/myserver.conf"
+                else
+                        if [ -e /etc/automysqlbackup/automysqlbackup.conf -a -r /etc/automysqlbackup/automysqlbackup.conf ]
+                        then
+                                confPath="/etc/automysqlbackup/automysqlbackup.conf"
+                        else
+                                echo "Couldn't find the automysqlbackup config."
+                                exit 1
+                        fi
+                fi
+        fi
 }
 
 runAMB() {
@@ -75,8 +80,8 @@ chownLocal() {
 # do we need to chown things?
 
 chown root.root $localBackupDir -R
-find /var/backup/db* -type f -exec chmod 400 {} \;
-find /var/backup/db* -type d -exec chmod 700 {} \;
+find $localBackupDir* -type f -exec chmod 400 {} \;
+find $localBackupDir* -type d -exec chmod 700 {} \;
 
 }
 
